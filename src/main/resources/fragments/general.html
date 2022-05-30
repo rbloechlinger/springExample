@@ -1,0 +1,43 @@
+<header th:fragment="header">
+  <title>SpringSample</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <style type="text/css">
+    span {
+      display: inline-block;
+      width: 200px;
+      text-align: left;
+    }
+    label {
+      display: inline-block;
+      width: 200px;
+      margin: 5px;
+      text-align: left;
+    }
+    input[type=text], input[type=password], select {
+      display: inline-block;
+      width: 200px;
+    }
+    input[type=radio] {
+      margin-left: 45px;
+    }
+    input[type=checkbox] {
+      margin-right: 190px;
+    }
+    button {
+      padding: 5px;
+      margin: 10px;
+    }
+  </style>
+</header>
+
+<footer th:fragment="default">
+  <div>
+    <i>&copy; 2022 Sample Footer</i>
+  </div>
+</footer>
+
+<footer th:fragment="admin">
+  <div>
+    <i>&copy; 2022 Admin Sample Footer<i>
+  </div>
+</footer>

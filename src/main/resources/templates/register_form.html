@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:insert="fragments/general.html :: header"> </header>
+<body>
+<div align="center">
+  <h1>User Registration</h1>
+  <form action="#" th:action="@{/register}" method="post" th:object="${user}">
+    <label>Name:</label>
+    <input type="text" th:field="*{name}" /><br/>
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</span>
+
+
+    <label>First Name:</label>
+    <input type="text" th:field="*{firstName}" /><br/>
+
+    <label>E-mail:</label>
+    <input type="text" th:field="*{email}" /><br/>
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</span><br th:if="${#fields.hasErrors('email')}">
+
+
+    <label>Password:</label>
+    <input type="password" th:field="*{password}" /><br/>
+
+    <label>Birthday (yyyy-mm-dd):</label>
+    <input type="text" th:field="*{birthday}" /><br/>
+    <span th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}">Date Error</span><br th:if="${#fields.hasErrors('birthday')}">
+
+    <label>Gender:</label>
+    <input type="radio" th:field="*{gender}" value="Male" />Male
+    <input type="radio" th:field="*{gender}" value="Female" />Female<br/>
+
+    <label>Profession:</label>
+    <select th:field="*{profession}">
+      <option th:each="p : ${listProfession}" th:value="${p}" th:text="${p}" />
+    </select>
+    <br/>
+
+    <label>Married?</label>
+    <input type="checkbox" th:field="*{married}" /><br/>
+
+    <label>Note:</label>
+    <textarea rows="5" cols="25" th:field="*{note}"></textarea>
+    <br/>
+
+    <button type="submit">Register</button>
+  </form>
+</div>
+<div th:insert="footer::default"></div>
+</body>
+</html>

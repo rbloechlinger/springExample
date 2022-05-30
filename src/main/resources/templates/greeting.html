@@ -1,0 +1,9 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:insert="fragments/general.html :: header"> </header>
+<body>
+<p th:text="'Hello, ' + ${name} + '!'" />
+<span th:text="#{welcome.message}" />
+<div th:insert="footer::default"></div>
+</body>
+</html>
