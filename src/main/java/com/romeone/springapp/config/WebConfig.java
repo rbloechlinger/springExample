@@ -19,7 +19,7 @@ public class WebConfig implements WebMvcConfigurer {
     private String defaultEncoding = "UTF-8";
 
     @Bean
-    @Description("Thymeleaf template resolver serving HTML 5")
+    @Description("Thymeleaf template resolver serving HTML5")
     public ClassLoaderTemplateResolver templateResolver() {
 
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
@@ -27,7 +27,7 @@ public class WebConfig implements WebMvcConfigurer {
         templateResolver.setPrefix("templates/");
         templateResolver.setCacheable(false);
         templateResolver.setSuffix(".html");
-        templateResolver.setTemplateMode("HTML5");
+        templateResolver.setTemplateMode("HTML");
         templateResolver.setCharacterEncoding(defaultEncoding);
 
         return templateResolver;
