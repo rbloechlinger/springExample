@@ -21,6 +21,7 @@ public class UserInterceptor implements HandlerInterceptor {
      **/
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object object) throws Exception {
+        log.error("preHandle");
         if (isUserLogged()) {
             addToModelUserDetails(request.getSession());
         }
@@ -32,6 +33,7 @@ public class UserInterceptor implements HandlerInterceptor {
      **/
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object object, ModelAndView model) throws Exception {
+        log.error("postHandle");
         if (model != null && !isRedirectView(model)) {
             if (isUserLogged()) {
                 addToModelUserDetails(model);
@@ -68,7 +70,7 @@ public class UserInterceptor implements HandlerInterceptor {
     }
 
     public static boolean isRedirectView(ModelAndView mv) {
-
+        log.error("isRedirectView");
         String viewName = mv.getViewName();
         if (viewName.startsWith("redirect:/")) {
             return true;
@@ -79,6 +81,7 @@ public class UserInterceptor implements HandlerInterceptor {
     }
 
     public static boolean isUserLogged() {
+        log.info("isUserLogged");
         try {
             return !SecurityContextHolder.getContext()
                 .getAuthentication()

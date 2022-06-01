@@ -36,7 +36,7 @@ public class SessionTimerInterceptor implements HandlerInterceptor {
                 log.warn("Logging out, due to inactive session");
                 SecurityContextHolder.clearContext();
                 request.logout();
-                response.sendRedirect("/spring-security-rest-full/logout");
+                response.sendRedirect("/logout");
             }
         }
         return true;
