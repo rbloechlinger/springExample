@@ -1,12 +1,12 @@
 package com.romeone.springapp.controller;
 
-import com.romeone.springapp.model.CustomUser;
-
-import com.romeone.springapp.model.CustomUserRepository;
 import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
+
+import com.romeone.springapp.model.User;
+import com.romeone.springapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class UserController {
 
     @Autowired
-    private CustomUserRepository userRepository;
+    private UserRepository userRepository;
 
     @GetMapping("/register")
     public String showForm(Model model) {
-        CustomUser user = new CustomUser();
+        User user = new User();
         model.addAttribute("user", user);
 
         List<String> listProfession = Arrays.asList("Developer", "Tester", "Architect");
@@ -33,12 +33,12 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String submitForm(@Valid @ModelAttribute("user") CustomUser user, BindingResult bindingResult) {
+    public String submitForm(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "register_form";
         }
 
-        CustomUser newUser = userRepository.save(user);
+        User newUser = userRepository.save(user);
         System.out.println(newUser);
 
         return "register_success";
