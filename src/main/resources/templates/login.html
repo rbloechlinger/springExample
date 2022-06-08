@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:insert="fragments/general.html :: header"> </header>
+<body>
+<form action="#" th:action="@{login}" method="post" th:object="${user}">
+    <label>Username:</label>
+    <input type="text" th:field="*{username}" /><br/>
+    <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</span>
+
+    <label>Password:</label>
+    <input type="password" th:field="*{password}" /><br/>
+
+    <button type="submit">Login</button>
+</form>
+<div th:insert="footer::default"></div>
+</body>
+</html>

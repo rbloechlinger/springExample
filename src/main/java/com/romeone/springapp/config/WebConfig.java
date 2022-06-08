@@ -36,7 +36,6 @@ public class WebConfig implements WebMvcConfigurer {
     @Bean
     @Description("Thymeleaf template engine with Spring integration")
     public SpringTemplateEngine templateEngine() {
-
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());
         templateEngine.setTemplateEngineMessageSource(messageSource());
@@ -73,6 +72,6 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(final InterceptorRegistry registry) {
 //        registry.addInterceptor(new LoggerInterceptor());
 //        registry.addInterceptor(new SessionTimerInterceptor());
-        //registry.addInterceptor(new UserInterceptor());
+//        registry.addInterceptor(new UserInterceptor());
     }
 }
