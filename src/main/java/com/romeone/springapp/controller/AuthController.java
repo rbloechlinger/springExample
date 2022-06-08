@@ -1,5 +1,6 @@
 package com.romeone.springapp.controller;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -9,7 +10,6 @@ import javax.validation.Valid;
 
 import com.romeone.springapp.model.ERole;
 import com.romeone.springapp.model.Role;
-
 import com.romeone.springapp.model.User;
 import com.romeone.springapp.payload.request.LoginRequest;
 import com.romeone.springapp.payload.request.SignupRequest;
@@ -19,6 +19,7 @@ import com.romeone.springapp.repository.RoleRepository;
 import com.romeone.springapp.repository.UserRepository;
 import com.romeone.springapp.security.jwt.JwtUtils;
 import com.romeone.springapp.security.services.UserDetailsImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,11 +27,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)

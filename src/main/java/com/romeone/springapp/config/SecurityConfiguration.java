@@ -34,9 +34,30 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        // Enable CORS and disable CSRF
+        http = http.cors().and().csrf().disable();
+
+        // Set exception handling and session management
         http
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and();
+
+        http = http
+                .authorizeRequests()
+                    .antMatchers("/admin").hasAuthority("ROLE_ADMIN")
+                    .antMatchers("/", "/home", "/greeting" ,"/api/auth/**", "/api/test/**", "/login").permitAll()
+                    .anyRequest().authenticated()
+                    .and()
+                .formLogin()
+                    .loginPage("/login")
+                    .loginProcessingUrl("/login")
+                    .defaultSuccessUrl("/greeting", true)
+                    .permitAll()
+                    .and()
+                .logout()
+                    .permitAll()
+                    .and()
+                .httpBasic().and();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
@@ -48,13 +69,13 @@ public class SecurityConfiguration {
         return new AuthTokenFilter();
     }
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring()
-                .antMatchers("/ignore1", "/ignore2", "/register")
-                .antMatchers("/api/auth/**")
-                .antMatchers("/api/test/**");
-    }
+//    @Bean
+//    public WebSecurityCustomizer webSecurityCustomizer() {
+//        return (web) -> web.ignoring()
+//                .antMatchers("/ignore1", "/ignore2", "/register")
+//                .antMatchers("/api/auth/**")
+//                .antMatchers("/api/test/**");
+//    }
 
 //    @Bean
 //    public InMemoryUserDetailsManager userDetailsService() {
