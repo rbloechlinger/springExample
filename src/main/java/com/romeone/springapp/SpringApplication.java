@@ -39,8 +39,6 @@ public class SpringApplication {
 
     @EventListener(ApplicationReadyEvent.class)
     public void runAfterStartup() {
-//		queryAllCustomers();
-//		createCustomer();
-//		queryAllCustomers();
+        // Create data
     }
 }

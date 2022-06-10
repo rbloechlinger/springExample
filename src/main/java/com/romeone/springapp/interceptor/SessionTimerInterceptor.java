@@ -24,14 +24,19 @@ public class SessionTimerInterceptor implements HandlerInterceptor {
      * Executed before actual handler is executed
      **/
     @Override
-    public boolean preHandle(final HttpServletRequest request, final HttpServletResponse response, final Object handler) throws Exception {
+    public boolean preHandle(final HttpServletRequest request, final HttpServletResponse response,
+                             final Object handler) throws Exception {
+
         log.info("Pre handle method - check handling start time");
+
         long startTime = System.currentTimeMillis();
         request.setAttribute("executionTime", startTime);
+
         if (UserInterceptor.isUserLogged()) {
             session = request.getSession();
             log.info("Time since last request in this session: {} ms", System.currentTimeMillis() - request.getSession()
                     .getLastAccessedTime());
+
             if (System.currentTimeMillis() - session.getLastAccessedTime() > MAX_INACTIVE_SESSION_TIME) {
                 log.warn("Logging out, due to inactive session");
                 SecurityContextHolder.clearContext();

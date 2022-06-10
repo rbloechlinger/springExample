@@ -43,14 +43,16 @@ public class LoggerInterceptor implements HandlerInterceptor {
     private String getParameters(final HttpServletRequest request) {
         final StringBuffer posted = new StringBuffer();
         final Enumeration<?> e = request.getParameterNames();
-        if (e != null)
-            posted.append("?");
+
+        if (e != null) posted.append("?");
+
         while (e != null && e.hasMoreElements()) {
-            if (posted.length() > 1)
-                posted.append("&");
+            if (posted.length() > 1) posted.append("&");
+
             final String curr = (String) e.nextElement();
             posted.append(curr)
                     .append("=");
+
             if (curr.contains("password") || curr.contains("answer") || curr.contains("pwd")) {
                 posted.append("*****");
             } else {
@@ -60,13 +62,17 @@ public class LoggerInterceptor implements HandlerInterceptor {
 
         final String ip = request.getHeader("X-FORWARDED-FOR");
         final String ipAddr = (ip == null) ? getRemoteAddr(request) : ip;
-        if (ipAddr != null || ipAddr.length() >= 0)
+
+        if (ipAddr != null || ipAddr.length() >= 0) {
             posted.append("&_psip=" + ipAddr);
+        }
+
         return posted.toString();
     }
 
     private String getRemoteAddr(final HttpServletRequest request) {
         final String ipFromHeader = request.getHeader("X-FORWARDED-FOR");
+
         if (ipFromHeader != null && ipFromHeader.length() > 0) {
             log.debug("ip from proxy - X-FORWARDED-FOR : " + ipFromHeader);
             return ipFromHeader;

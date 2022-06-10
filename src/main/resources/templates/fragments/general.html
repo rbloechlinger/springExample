@@ -1,6 +1,10 @@
+
 <header th:fragment="header">
   <title>SpringSample</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" th:href="@{/src/bootstrap/bootstrap-5.2.0-beta1-dist/css/bootstrap.css}">
+  <script th:src="@{/src/bootstrap/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js}"></script>
+
   <style type="text/css">
     span {
       display: inline-block;
@@ -35,9 +39,4 @@
     <i>&copy; 2022 Sample Footer</i>
   </div>
 </footer>
-
-<footer th:fragment="admin">
-  <div>
-    <i>&copy; 2022 Admin Sample Footer<i>
-  </div>
-</footer>
+</html>

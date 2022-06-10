@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<header th:insert="fragments/general.html :: header"> </header>
+<header th:replace="fragments/general :: header"> </header>
 <body>
 <div align="center">
   <h1>User Registration</h1>
@@ -20,6 +20,6 @@
     <button type="submit">Register</button>
   </form>
 </div>
-<div th:insert="footer::default"></div>
+<footer th:replace="fragments/general :: footer"></footer>
 </body>
 </html>

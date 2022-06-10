@@ -1,9 +1,13 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<header th:insert="fragments/general.html :: header"> </header>
+<header th:replace="fragments/general :: header"> </header>
 <body>
 <p th:text="'Hello, ' + ${name} + '!'" />
 <span th:text="#{welcome.message}" />
-<div th:insert="footer::default"></div>
+<br>
+<p>
+    <a href="/login" th:href="@{/login}" class="btn btn-large btn-success">Sign up</a>
+</p>
+<div th:replace="fragments/general :: footer"></div>
 </body>
 </html>

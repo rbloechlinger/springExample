@@ -29,7 +29,7 @@ public class UserInterceptor implements HandlerInterceptor {
     }
 
     /**
-     * Executed before after handler is executed. If view is a redirect view, we don't need to execute postHandle
+     * Executed before after handler is executed. If view is a redirect view,no need to execute postHandle
      **/
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object object, ModelAndView model) throws Exception {
@@ -81,7 +81,6 @@ public class UserInterceptor implements HandlerInterceptor {
     }
 
     public static boolean isUserLogged() {
-        log.info("isUserLogged");
         try {
             return !SecurityContextHolder.getContext()
                     .getAuthentication()

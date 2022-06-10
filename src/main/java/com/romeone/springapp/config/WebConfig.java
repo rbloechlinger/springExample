@@ -1,5 +1,9 @@
 package com.romeone.springapp.config;
 
+import com.romeone.springapp.interceptor.LoggerInterceptor;
+import com.romeone.springapp.interceptor.SessionTimerInterceptor;
+import com.romeone.springapp.interceptor.UserInterceptor;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Description;
@@ -69,8 +73,8 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(final InterceptorRegistry registry) {
-//        registry.addInterceptor(new LoggerInterceptor());
-//        registry.addInterceptor(new SessionTimerInterceptor());
-        //registry.addInterceptor(new UserInterceptor());
+        registry.addInterceptor(new LoggerInterceptor());
+        registry.addInterceptor(new SessionTimerInterceptor());
+        registry.addInterceptor(new UserInterceptor());
     }
 }

@@ -20,11 +20,11 @@ import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 
 @Configuration
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity(debug = false)
 @EnableGlobalMethodSecurity(
-        // securedEnabled = true,
+        // securedEnabled = true, // enables @Secured annotation eg. @Secured({ "ROLE_VIEWER", "ROLE_EDITOR" })
         // jsr250Enabled = true,
-        prePostEnabled = true)
+        prePostEnabled = true) // enable @PreAuthorize and @PostAuthorize
 public class SecurityConfiguration {
     @Autowired
     UserDetailsServiceImpl userDetailsService;
@@ -36,6 +36,8 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        log.info("Init SecurityFilterChain");
+
         // Enable CORS and disable CSRF
         http = http.cors().and().csrf().disable();
 
@@ -46,25 +48,25 @@ public class SecurityConfiguration {
         http.sessionManagement()
                 .invalidSessionUrl("/login")
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-                .maximumSessions(2).and();
+                .maximumSessions(2);
 
         http.authorizeRequests()
                 .antMatchers("/admin").hasAuthority("ROLE_ADMIN")
-                .antMatchers("/", "/greeting", "/api/auth/**", "/api/test/**").permitAll()
+                .antMatchers("/", "/src/**/*", "/greeting", "/api/auth/**", "/api/test/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/greeting", true)
-                .successHandler(myAuthenticationSuccessHandler())
+                .successHandler(authenticationSuccessHandler())
                 .permitAll()
                 .and()
             .logout()
                 .logoutSuccessUrl("/")
                 .permitAll()
                 .and()
-            .httpBasic().and();
+            .httpBasic();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
@@ -77,8 +79,8 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
-        return new UrlAuthenticationSuccessHandler();
+    public AuthenticationSuccessHandler authenticationSuccessHandler() {
+            return new UrlAuthenticationSuccessHandler();
     }
 
     @Bean
