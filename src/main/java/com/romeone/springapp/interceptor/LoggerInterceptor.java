@@ -1,15 +1,13 @@
 package com.romeone.springapp.interceptor;
 
-import java.util.Enumeration;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import org.thymeleaf.expression.Strings;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Enumeration;
 
 public class LoggerInterceptor implements HandlerInterceptor {
 
@@ -52,7 +50,7 @@ public class LoggerInterceptor implements HandlerInterceptor {
                 posted.append("&");
             final String curr = (String) e.nextElement();
             posted.append(curr)
-                .append("=");
+                    .append("=");
             if (curr.contains("password") || curr.contains("answer") || curr.contains("pwd")) {
                 posted.append("*****");
             } else {

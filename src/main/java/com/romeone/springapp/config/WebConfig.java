@@ -1,7 +1,5 @@
 package com.romeone.springapp.config;
 
-import com.romeone.springapp.interceptor.LoggerInterceptor;
-import com.romeone.springapp.interceptor.SessionTimerInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Description;

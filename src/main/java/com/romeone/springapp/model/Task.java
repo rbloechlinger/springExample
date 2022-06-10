@@ -1,11 +1,7 @@
 package com.romeone.springapp.model;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "task")
@@ -70,11 +66,11 @@ public class Task {
     @Override
     public String toString() {
         return "Task{" +
-            "id=" + id +
-            ", creationDate=" + creationDate +
-            ", lastUpdate=" + lastUpdate +
-            ", due=" + due +
-            ", description='" + description + '\'' +
-            '}';
+                "id=" + id +
+                ", creationDate=" + creationDate +
+                ", lastUpdate=" + lastUpdate +
+                ", due=" + due +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

@@ -22,13 +22,13 @@ public class TestController {
     }
 
     @GetMapping("/mod")
-    @PreAuthorize("hasRole('MODERATOR')")
+    @PreAuthorize("hasRole('MODERATOR') or hasAuthority('MODERATOR')")
     public String moderatorAccess() {
         return "Moderator Board.";
     }
 
     @GetMapping("/admin")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') or hasAuthority('ADMIN')")
     public String adminAccess() {
         return "Admin Board.";
     }
