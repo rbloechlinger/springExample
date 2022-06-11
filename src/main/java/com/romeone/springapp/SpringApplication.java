@@ -39,6 +39,6 @@ public class SpringApplication {
 
     @EventListener(ApplicationReadyEvent.class)
     public void runAfterStartup() {
-        // Create data
+        // TODO: Sample data
     }
 }
