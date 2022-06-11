@@ -20,7 +20,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="taskExample" value="85089e53-ea93-47bc-b0c0-cdfe73dac0c6" />
+          <factory-entry name="springExample" value="85089e53-ea93-47bc-b0c0-cdfe73dac0c6" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>
