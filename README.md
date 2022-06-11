@@ -1,2 +1,2 @@
-# taskExample
+# Spring App prototype
  
