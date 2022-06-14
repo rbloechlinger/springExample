@@ -1,7 +1,11 @@
 package com.romeone.springapp;
 
+import com.romeone.springapp.model.Employee;
+import com.romeone.springapp.repository.EmployeeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +19,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 public class SpringApplication {
+    @Autowired
+    EmployeeRepository repository;
 
     private final Logger logger = LoggerFactory.getLogger(SpringApplication.class);
 
@@ -37,8 +43,18 @@ public class SpringApplication {
         };
     }
 
+//    @Bean
+//    CommandLineRunner initDatabase(EmployeeRepository repository) {
+//        return args -> {
+//            logger.info("Preloading " + repository.save(new Employee("Bilbo Baggins", "burglar")));
+//            logger.info("Preloading " + repository.save(new Employee("Frodo Baggins", "thief")));
+//        };
+//    }
+
     @EventListener(ApplicationReadyEvent.class)
     public void runAfterStartup() {
         // TODO: Sample data
+        logger.info("Preloading " + repository.save(new Employee("Bilbo Baggins", "burglar")));
+        logger.info("Preloading " + repository.save(new Employee("Frodo Baggins", "thief")));
     }
 }
